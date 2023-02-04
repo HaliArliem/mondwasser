@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MondWasser</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="shortcut icon" type="image/png" href="vrede-32.png">
+
+    <!-- Add Firebase SDK -->
+
+
+
+
+</head>
+<body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="home">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBdJ3eVypajQn89pBFAz6gJnZwAi01EZ8o",
+        authDomain: "mondwasser-8d58f.firebaseapp.com",
+        projectId: "mondwasser-8d58f",
+        storageBucket: "mondwasser-8d58f.appspot.com",
+        messagingSenderId: "584515238572",
+        appId: "1:584515238572:web:0c83a0d8306818a3f33d09",
+        measurementId: "G-Q0VCFSEW62"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      
+
+const auth = getAuth();
+
+
+document.getElementById("form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    console.error("Email and password must be filled out");
+    return;
+  }
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log("success-login");
+      window.location.href = "studies.html";
+
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+});
+
+      
+    </script>
+    <main>
+        <img src="black.gif" alt="Moon">
+        <form action="" id="form">
+            <label for="email">Email:</label>
+            <input type="email" id="email">
+            <label for="password">Password:</label>
+            <input type="password" id="password">
+            <input type="submit" value="Submit" onclick="signInWithEmailAndPassword(auth, email, password)">
+        </form>
+        <div id="message"></div>
+    </main>
+    <footer>
+    </footer>
+
+    <!-- Add JavaScript code to handle the form submission -->
+
+</body>
+</html>
